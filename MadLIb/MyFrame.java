@@ -39,9 +39,9 @@ public class MyFrame {
         demoList.addElement("Story 1");
         demoList.addElement("Story 2");
         demoList.addElement("Story 3");
-        JList<String> listd = new JList<>(demoList);
-        listd.setBounds(500, 450, 400, 200);
-        listd.setBorder(BorderFactory.createLineBorder(Color.black));
+        JList<String> list = new JList<>(demoList);
+        list.setBounds(500, 450, 400, 200);
+        list.setBorder(BorderFactory.createLineBorder(Color.black));
 
         DefaultListModel<String> demoList1 = new DefaultListModel<>();
         demoList1.addElement("Story 4");
@@ -55,19 +55,19 @@ public class MyFrame {
         demoList2.addElement("Story 7");
         demoList2.addElement("Story 8");
         demoList2.addElement("Story 9");
-        JList<String> lists2 = new JList<>(demoList2);
-        lists2.setBounds(500, 450, 400, 200);
-        lists2.setBorder(BorderFactory.createLineBorder(Color.black));
+        JList<String> list2 = new JList<>(demoList2);
+        list2.setBounds(500, 450, 400, 200);
+        list2.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
         f.add(enter1);
         f.add(jComboBox);
-        f.add(listd);
+        f.add(list);
         f.add(list1);
-        f.add(lists2);
-        listd.setVisible(false);
+        f.add(list2);
+        list.setVisible(false);
         list1.setVisible(false);
-        lists2.setVisible(false);
+        list2.setVisible(false);
         f.add(backBtn);
         backBtn.setVisible(true);
         f.add(p);
@@ -80,18 +80,29 @@ public class MyFrame {
         enter1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (Objects.equals(jComboBox.getItemAt(0), "Horror")){
-                    listd.setVisible(true);
+                String find = jComboBox.getSelectedItem().toString();
+
+                if (find.equals("Horror")){
+                    list.setVisible(true);
+                    list1.setVisible(false);
+                    list2.setVisible(false);
+
                     jComboBox.setVisible(false);
                     enter1.setVisible(false);
                 }
-                else if (Objects.equals(jComboBox.getItemAt(1), "Comedy")){
+                if (find.equals("Comedy")){
+                    list.setVisible(false);
                     list1.setVisible(true);
+                    list2.setVisible(false);
+
                     jComboBox.setVisible(false);
                     enter1.setVisible(false);
                 }
-                else if (Objects.equals(jComboBox.getItemAt(2), "Action")){
-                    lists2.setVisible(true);
+                if (find.equals("Action")){
+                    list.setVisible(false);
+                    list1.setVisible(false);
+                    list2.setVisible(true);
+
                     jComboBox.setVisible(false);
                     enter1.setVisible(false);
                 }
@@ -103,9 +114,9 @@ public class MyFrame {
             public void actionPerformed(ActionEvent e) {
                 jComboBox.setVisible(true);
                 enter1.setVisible(true);
-                listd.setVisible(false);
+                list.setVisible(false);
                 list1.setVisible(false);
-                lists2.setVisible(false);
+                list2.setVisible(false);
             }
         });
     }
