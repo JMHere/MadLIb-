@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MyFrame {
-    public void createFrame() throws IOException {
+    public void createFrame() {
 
         JFrame f;
         f = new JFrame("MadLib+");
