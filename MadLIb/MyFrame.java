@@ -132,6 +132,7 @@ public class MyFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jComboBox.setVisible(true);
+                storyChoice.setText("");
                 enter1.setVisible(true);
                 list.setVisible(false);
                 list1.setVisible(false);
