@@ -23,13 +23,18 @@ public class MyFrame {
         backBtn.setBounds(25, 700, 100, 25);
 
         JButton storyName;
-        storyName = new JButton("Enter");
+        storyName = new JButton("Enter S");
         storyName.setBackground(Color.white);
         storyName.setBounds(300, 500, 70,50);
 
         JTextField storyChoice;
         storyChoice = new JTextField();
         storyChoice.setBounds(400, 490,140,20);
+
+        JTextPane random;
+        random = new JTextPane();
+        random.setBackground(Color.white);
+        random.setBounds(400, 490, 140, 35);
 
         JLabel l;
         l = new JLabel("MadLib+");
@@ -74,6 +79,8 @@ public class MyFrame {
         f.add(list);
         f.add(list1);
         f.add(list2);
+        f.add(random);
+        random.setVisible(false);
         list.setVisible(false);
         list1.setVisible(false);
         list2.setVisible(false);
@@ -105,7 +112,7 @@ public class MyFrame {
                     storyName.setVisible(true);
                     storyChoice.setVisible(true);
                 }
-                if (find.equals("Comedy")){
+                else if (find.equals("Comedy")){
                     list.setVisible(false);
                     list1.setVisible(true);
                     list2.setVisible(false);
@@ -115,7 +122,7 @@ public class MyFrame {
                     storyName.setVisible(true);
                     storyChoice.setVisible(true);
                 }
-                if (find.equals("Action")){
+                else if (find.equals("Action")){
                     list.setVisible(false);
                     list1.setVisible(false);
                     list2.setVisible(true);
@@ -133,16 +140,32 @@ public class MyFrame {
             public void actionPerformed(ActionEvent e) {
                 jComboBox.setVisible(true);
                 storyChoice.setText("");
+                storyName.setVisible(false);
+                storyChoice.setVisible(false);
                 enter1.setVisible(true);
                 list.setVisible(false);
                 list1.setVisible(false);
                 list2.setVisible(false);
+                random.setVisible(false);
             }
         });
 
         storyName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (Objects.equals(storyChoice.getText(), "Story 1")){
+                    random.setVisible(true);
+                    random.setText("This is the story you choose");
+                }
+                else if (Objects.equals(storyChoice.getText(), "Story 2")){
+                    random.setVisible(true);
+                    random.setText("Hello World");
+                }
+                else if (Objects.equals(storyChoice.getText(), "Story 3")){
+                    random.setVisible(true);
+                    random.setText("Goodbye");
+                }
+
                 storyName.setVisible(false);
                 storyChoice.setVisible(false);
                 jComboBox.setVisible(false);
