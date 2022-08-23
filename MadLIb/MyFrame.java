@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MyFrame {
-    public void createFrame() throws IOException {
+    public void createFrame() {
 
         JFrame f;
         f = new JFrame("MadLib+");
@@ -22,6 +22,20 @@ public class MyFrame {
         backBtn = new JButton("GO BACK!");
         backBtn.setBounds(25, 700, 100, 25);
 
+        JButton storyName;
+        storyName = new JButton("Enter S");
+        storyName.setBackground(Color.white);
+        storyName.setBounds(300, 500, 70,50);
+
+        JTextField storyChoice;
+        storyChoice = new JTextField();
+        storyChoice.setBounds(400, 490,140,20);
+
+        JTextPane random;
+        random = new JTextPane();
+        random.setBackground(Color.white);
+        random.setBounds(400, 490, 140, 35);
+
         JLabel l;
         l = new JLabel("MadLib+");
         l.setFont(new Font("Fonts", 3, 50));
@@ -33,14 +47,14 @@ public class MyFrame {
 
         String[] optionsToChoose = {"Horror", "Comedy", "Action"};
         JComboBox<String> jComboBox = new JComboBox<>(optionsToChoose);
-        jComboBox.setBounds(445, 250, 140, 20);
+        jComboBox.setBounds(410, 250, 140, 20);
 
         DefaultListModel<String> demoList = new DefaultListModel<>();
         demoList.addElement("Story 1");
         demoList.addElement("Story 2");
         demoList.addElement("Story 3");
         JList<String> list = new JList<>(demoList);
-        list.setBounds(500, 450, 400, 200);
+        list.setBounds(325, 250, 400, 200);
         list.setBorder(BorderFactory.createLineBorder(Color.black));
 
         DefaultListModel<String> demoList1 = new DefaultListModel<>();
@@ -48,7 +62,7 @@ public class MyFrame {
         demoList1.addElement("Story 5");
         demoList1.addElement("Story 6");
         JList<String> list1 = new JList<>(demoList1);
-        list1.setBounds(500, 450, 400, 200);
+        list1.setBounds(325, 250, 400, 200);
         list1.setBorder(BorderFactory.createLineBorder(Color.black));
 
         DefaultListModel<String> demoList2 = new DefaultListModel<>();
@@ -56,7 +70,7 @@ public class MyFrame {
         demoList2.addElement("Story 8");
         demoList2.addElement("Story 9");
         JList<String> list2 = new JList<>(demoList2);
-        list2.setBounds(500, 450, 400, 200);
+        list2.setBounds(325, 250, 400, 200);
         list2.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
@@ -65,10 +79,16 @@ public class MyFrame {
         f.add(list);
         f.add(list1);
         f.add(list2);
+        f.add(random);
+        random.setVisible(false);
         list.setVisible(false);
         list1.setVisible(false);
         list2.setVisible(false);
         f.add(backBtn);
+        f.add(storyName);
+        storyName.setVisible(false);
+        f.add(storyChoice);
+        storyChoice.setVisible(false);
         backBtn.setVisible(true);
         f.add(p);
         f.setSize(1000, 900);
@@ -89,22 +109,28 @@ public class MyFrame {
 
                     jComboBox.setVisible(false);
                     enter1.setVisible(false);
+                    storyName.setVisible(true);
+                    storyChoice.setVisible(true);
                 }
-                if (find.equals("Comedy")){
+                else if (find.equals("Comedy")){
                     list.setVisible(false);
                     list1.setVisible(true);
                     list2.setVisible(false);
 
                     jComboBox.setVisible(false);
                     enter1.setVisible(false);
+                    storyName.setVisible(true);
+                    storyChoice.setVisible(true);
                 }
-                if (find.equals("Action")){
+                else if (find.equals("Action")){
                     list.setVisible(false);
                     list1.setVisible(false);
                     list2.setVisible(true);
 
                     jComboBox.setVisible(false);
                     enter1.setVisible(false);
+                    storyName.setVisible(true);
+                    storyChoice.setVisible(true);
                 }
             }
         });
@@ -113,7 +139,37 @@ public class MyFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jComboBox.setVisible(true);
+                storyChoice.setText("");
+                storyName.setVisible(false);
+                storyChoice.setVisible(false);
                 enter1.setVisible(true);
+                list.setVisible(false);
+                list1.setVisible(false);
+                list2.setVisible(false);
+                random.setVisible(false);
+            }
+        });
+
+        storyName.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Objects.equals(storyChoice.getText(), "Story 1")){
+                    random.setVisible(true);
+                    random.setText("This is the story you choose");
+                }
+                else if (Objects.equals(storyChoice.getText(), "Story 2")){
+                    random.setVisible(true);
+                    random.setText("Hello World");
+                }
+                else if (Objects.equals(storyChoice.getText(), "Story 3")){
+                    random.setVisible(true);
+                    random.setText("Goodbye");
+                }
+
+                storyName.setVisible(false);
+                storyChoice.setVisible(false);
+                jComboBox.setVisible(false);
+                enter1.setVisible(false);
                 list.setVisible(false);
                 list1.setVisible(false);
                 list2.setVisible(false);
